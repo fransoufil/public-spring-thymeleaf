@@ -3,17 +3,11 @@ package com.franz.demospringmvc.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Funcionarios")
+@Table(name = "FUNCIONARIOS")
 public class Funcionario extends AbstractEntity<Long> {
 	
 	@Column(nullable = false, unique = true)
@@ -22,10 +16,10 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal salario;
 	
-	@Column(name = "data_entrada" , nullable = false, unique = false, columnDefinition = "DATE")
+	@Column(name = "data_entrada" , nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
 	
-	@Column(name = "data_saida" , unique = false, columnDefinition = "DATE")
+	@Column(name = "data_saida" , columnDefinition = "DATE")
 	private LocalDate dataSaida;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -34,7 +28,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	
 	@ManyToOne
 	@JoinColumn(name = "cargo_id_fk")
-	private String cargo;
+	private Cargo cargo;
 
 	public String getNome() {
 		return nome;
@@ -76,13 +70,14 @@ public class Funcionario extends AbstractEntity<Long> {
 		this.endereco = endereco;
 	}
 
-	public String getCargo() {
+	public Cargo getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(String cargo) {
+	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+
 	
 	
 
