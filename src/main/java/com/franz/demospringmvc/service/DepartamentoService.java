@@ -6,7 +6,7 @@ import com.franz.demospringmvc.domain.Departamento;
 
 public interface DepartamentoService {
 	
-void salvar(Departamento departamento);
+    void salvar(Departamento departamento);
 	
 	void editar(Departamento departamento);
 	
